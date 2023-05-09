@@ -9,10 +9,17 @@ export const FiltersContainer = styled('div')({
   padding: '15px',
 })
 
+export const Filtercategorylabel = styled('h1')({
+  fontSize: '2rem',
+  fontWeight: 500,
+  color: 'white',
+})
+
 export const FilterCategory = styled('div')({
   display: 'flex',
   flexWrap: 'wrap',
   gap: '5px',
+  marginRight: '20px',
 })
 
 export const FilterButton = styled('div')({

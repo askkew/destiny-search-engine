@@ -1,12 +1,11 @@
 import React from 'react'
-import { FilterButton, FilterCategory, FilterLabel, FiltersContainer } from './filterstyles'
-import { damageTypes, itemConditions, itemClasses } from '../../utils'
+import { FilterButton, FilterCategory, FilterLabel, Filtercategorylabel, FiltersContainer } from './filterstyles'
+import { damageTypes, itemConditions, itemClasses, itemType } from '../../utils'
 
 const Filters = () => {
   return (
     <FiltersContainer>
-      <h1>Filters</h1>
-      <h1>Damage Type</h1>
+      <Filtercategorylabel>Damage Type</Filtercategorylabel>
       <FilterCategory>
         {damageTypes.map((type, index) => {
           return  <FilterButton key={index}>
@@ -15,7 +14,7 @@ const Filters = () => {
                   </FilterButton>
         })}
       </FilterCategory>
-      <h1>Item Rarity</h1>
+      <Filtercategorylabel>Item Rarity</Filtercategorylabel>
       <FilterCategory>
         {itemConditions.map((type, index) => {
           return  <FilterButton key={index}>
@@ -23,11 +22,20 @@ const Filters = () => {
                   </FilterButton>
         })}
       </FilterCategory>
-      <h1>Class Type</h1>
+      <Filtercategorylabel>Class Type</Filtercategorylabel>
       <FilterCategory>
         {itemClasses.map((type, index) => {
           return  <FilterButton key={index}>
                     <img src={type.icon} height={type.iconsize} style={{marginRight: '10px'}}/>
+                    <FilterLabel>{type.name}</FilterLabel>
+                  </FilterButton>
+        })}
+      </FilterCategory>
+      <Filtercategorylabel>Item Type</Filtercategorylabel>
+      <FilterCategory>
+        {itemType.map((type, index) => {
+          return  <FilterButton key={index}>
+                    <img src={type.icon} height={type.iconsize} style={{marginRight: '10px'}} alt=""/>
                     <FilterLabel>{type.name}</FilterLabel>
                   </FilterButton>
         })}

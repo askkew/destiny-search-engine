@@ -79,3 +79,61 @@ export const itemClasses = [
     iconsize: '18',
   },
 ]
+
+export const itemType = [
+  {
+    name: 'Helmet',
+    icon: './assets/helmet.png',
+    iconsize: '25',
+  },
+  {
+    name: 'Gloves',
+    icon: './assets/gloves.png',
+    iconsize: '25',
+  },
+  {
+    name: 'Chest',
+    icon: './assets/chest.png',
+    iconsize: '25',
+  },
+  {
+    name: 'Boots',
+    icon: './assets/boots.png',
+    iconsize: '25',
+  },
+  {
+    name: 'Class Item',
+    icon: './assets/classitem.png',
+    iconsize: '25',
+  },
+  {
+    name: 'Kinetic Weapon',
+    icon: './assets/primaryicon.png',
+    iconsize: '25',
+  },
+  {
+    name: 'Energy Weapon',
+    icon: './assets/specialicon.png',
+    iconsize: '25',
+  },
+  {
+    name: 'Power Weapon',
+    icon: './assets/heavyicon.png',
+    iconsize: '25',
+  },
+  {
+    name: 'Ghost',
+    icon: './assets/ghosticon.png',
+    iconsize: '25',
+  },
+  {
+    name: 'Vehicle',
+    icon: './assets/sparrow.png',
+    iconsize: '50',
+  },
+  {
+    name: 'Ship',
+    icon: './assets/ship.png',
+    iconsize: '25',
+  },
+]
