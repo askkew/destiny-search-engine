@@ -5,8 +5,12 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 
 const Results = () => {
   const { data } = useContext(DataContext);
-  const test = data.Response.results;
+  const test = data?.Response?.results;
   console.log(test)
+
+  if (!test || !test.length) {
+    return null;
+  }
 
   return (
     <ResultContainer>

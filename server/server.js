@@ -18,7 +18,7 @@ app.get('/search', async (req, res) => {
   try {
     const response = await axios.get(`https://www.bungie.net/Platform/Destiny2/Armory/Search/DestinyInventoryItemDefinition/${searchQuery}/?page=${page}`, {
       headers: {
-        'X-API-Key': '61d53d163f7f43a8b31062b55180d23a' // Replace with your Bungie API key
+        'X-API-Key': apiKey,
       }
     });
     const results = response.data.Response.results.results;
@@ -29,7 +29,7 @@ app.get('/search', async (req, res) => {
           `https://www.bungie.net/Platform/Destiny2/Manifest/DestinyInventoryItemDefinition/${hash}`,
           {
             headers: {
-              'X-API-Key': '61d53d163f7f43a8b31062b55180d23a',
+              'X-API-Key': apiKey,
             },
           }
         );
