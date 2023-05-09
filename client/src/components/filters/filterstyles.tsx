@@ -4,7 +4,7 @@ export const FiltersContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'left',
-  border: '3px solid red',
+  // border: '3px solid red',
   minWidth: '25%',
   padding: '15px',
 })

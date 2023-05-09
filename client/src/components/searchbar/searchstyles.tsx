@@ -8,7 +8,8 @@ export const SearchBarContainer = styled('div')({
   width: '100vw',
   color: 'white',
   margin: 'auto',
-  border: '3px solid red',
+  // border: '3px solid red',
+  backgroundColor: 'rgb(26,29,34)',
 })
 
 export const StyledInputField = styled('input')({

@@ -1,9 +1,15 @@
 import React from 'react'
-import { ActionContainer } from './actionstyles'
+import { ActionContainer, Actiontitle, ActionItem } from './actionstyles'
+import { AiFillHome } from 'react-icons/ai'
 
 const Actions = () => {
   return (
-    <ActionContainer>Actions</ActionContainer>
+    <ActionContainer>
+      {/* <ActionItem>
+        <AiFillHome style={{fontSize: '3rem'}} />
+        <Actiontitle>Home</Actiontitle>
+      </ActionItem> */}
+    </ActionContainer>
   )
 }
 

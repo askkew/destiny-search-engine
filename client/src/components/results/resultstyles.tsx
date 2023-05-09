@@ -6,5 +6,5 @@ export const ResultContainer = styled('div')({
   alignItems: 'center',
   justifyContent: 'center',
   height: '100vh',
-  minWidth: '50%',
+  minWidth: '60%',
 })

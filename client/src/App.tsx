@@ -6,11 +6,18 @@ import Results from './components/results';
 import Filters from './components/filters';
 import styled from '@emotion/styled';
 import Actions from './components/actions';
+import { Divider } from '@mui/material';
 
 const Contentcontainer = styled('div')({
   display: 'flex',
   flexDirection: 'row',
 })
+
+const StyledDivider = styled(Divider)({
+  margin: '5px',
+  width: '0.1%',
+  backgroundColor: 'rgb(26,29,34)',
+});
 
 function App() {
   const [data, setData] = useState(null);
@@ -20,7 +27,9 @@ function App() {
       <Searchbar />
       <Contentcontainer>
         <Actions />
+        <StyledDivider orientation="vertical" flexItem />
         <Results />
+        <StyledDivider orientation="vertical" flexItem />
         <Filters />
       </Contentcontainer>
     </DataContext.Provider>
