@@ -3,6 +3,14 @@ import { DataContext } from './utils/DataContext';
 import Searchbar from './components/searchbar';
 import { ToastContainer } from 'react-toastify';
 import Results from './components/results';
+import Filters from './components/filters';
+import styled from '@emotion/styled';
+import Actions from './components/actions';
+
+const Contentcontainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+})
 
 function App() {
   const [data, setData] = useState(null);
@@ -10,8 +18,11 @@ function App() {
     <DataContext.Provider value={{ data, setData }}>
       <ToastContainer />
       <Searchbar />
-      <Results />
-      {/* other components that need access to the data */}
+      <Contentcontainer>
+        <Actions />
+        <Results />
+        <Filters />
+      </Contentcontainer>
     </DataContext.Provider>
   );
 }

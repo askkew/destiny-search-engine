@@ -8,10 +8,6 @@ const Results = () => {
   const test = data?.Response?.results;
   console.log(test)
 
-  if (!test || !test.length) {
-    return null;
-  }
-
   return (
     <ResultContainer>
       <Table>
@@ -23,7 +19,7 @@ const Results = () => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {test.map((item: any) => (
+        {data && test.map((item: any) => (
           <TableRow key={item.hash}>
             <img src={`https://www.bungie.net${item.displayProperties.icon}`} alt="" height="50" />
             <TableCell>{item.displayProperties.name}</TableCell>

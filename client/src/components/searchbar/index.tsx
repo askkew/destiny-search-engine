@@ -3,7 +3,7 @@ import { DataContext } from '../../utils/DataContext'
 import BarLoader from "react-spinners/BarLoader";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ButtonLabel, SearchBarContainer, StyledButton, StyledForm, StyledInputField } from './searchstyles';
+import { ButtonLabel, SearchBarContainer, StyledButton, StyledForm, StyledInputField, StyledInputFieldTemp } from './searchstyles';
 import axios from 'axios';
 
 const override: CSSProperties = {
@@ -53,7 +53,7 @@ const Searchbar = () => {
     <SearchBarContainer>
       <StyledForm onSubmit={handleSearch}>
         <StyledInputField type="text" placeholder="Enter search query" id="searchQuery" required onChange={(e) => setSearchQuery(e.target.value)} />
-        <StyledInputField type="number" placeholder="Enter page" id="page" required onChange={(e) => setPage(Number(e.target.value))} />
+        <StyledInputFieldTemp type="number" placeholder="Enter page" id="page" required onChange={(e) => setPage(Number(e.target.value))} />
         <StyledButton type="submit"><ButtonLabel>Search</ButtonLabel></StyledButton>
       </StyledForm>
       <BarLoader
