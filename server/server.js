@@ -11,6 +11,7 @@ app.use(express.json());
 const apiKey = process.env.X_API_KEY;
 
 //-------endpoints--------
+
 app.get('/search', async (req, res) => {
   const { searchQuery, page } = req.query;
   // const endpoint = `https://www.bungie.net/Platform/Destiny2/Armory/Search/DestinyInventoryItemDefinition/${searchQuery}/?page=${page}`;
@@ -20,13 +21,29 @@ app.get('/search', async (req, res) => {
         'X-API-Key': '61d53d163f7f43a8b31062b55180d23a' // Replace with your Bungie API key
       }
     });
-    const data = response.data;
-    res.json(data);
+    const results = response.data.Response.results.results;
+    const resultWithAdditionalData = await Promise.all(
+      results.map(async (result) => {
+        const hash = result.hash;
+        const additionalDataResponse = await axios.get(
+          `https://www.bungie.net/Platform/Destiny2/Manifest/DestinyInventoryItemDefinition/${hash}`,
+          {
+            headers: {
+              'X-API-Key': '61d53d163f7f43a8b31062b55180d23a',
+            },
+          }
+        );
+        const additionalData = additionalDataResponse.data.Response;
+        return { ...result, additionalData };
+      })
+    );
+    res.json({ Response: { results: resultWithAdditionalData } });
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');
   }
 });
+
 //
 
 const PORT = 5000;

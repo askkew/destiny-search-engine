@@ -23,11 +23,13 @@ const Searchbar = () => {
   const [results, setResults] = useState([]);
 
   const handleSearch = async (event: { preventDefault: () => void; }) => {
+    setLoading(true);
     event.preventDefault();
     const endpoint = `http://localhost:5000/search?searchQuery=${searchQuery}&page=${page}`;
     const response = await axios.get(endpoint);
     setResults(response.data.Response.results);
     console.log(response);
+    setLoading(false);
     toast('🦄 Wow so easy!', {
       position: "top-right",
       autoClose: 5000,
