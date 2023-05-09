@@ -16,19 +16,19 @@ const override: CSSProperties = {
 };
 
 const Searchbar = () => {
+  const { setData } = useContext(DataContext);
   let [loading, setLoading] = useState(false);
   const [barWidth, setBarWidth] = useState(window.innerWidth);
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
-  const [results, setResults] = useState([]);
 
   const handleSearch = async (event: { preventDefault: () => void; }) => {
     setLoading(true);
     event.preventDefault();
     const endpoint = `http://localhost:5000/search?searchQuery=${searchQuery}&page=${page}`;
     const response = await axios.get(endpoint);
-    setResults(response.data.Response.results);
-    console.log(response);
+    setData(response.data);
+    // console.log(response)
     setLoading(false);
     toast('🦄 Wow so easy!', {
       position: "top-right",
