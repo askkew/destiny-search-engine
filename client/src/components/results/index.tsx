@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ResultContainer, StyledTableCell } from './resultstyles';
 import { DataContext } from '../../utils/DataContext';
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import { Table, TableBody, TableCell, TableHead, TableRow, makeStyles } from '@mui/material';
 
 const Results = () => {
   const { data } = useContext(DataContext);
@@ -53,7 +53,7 @@ const Results = () => {
 
   return (
     <ResultContainer>
-      <Table>
+      <Table sx={{borderRadius: '10px 0 0 10px',}}>
       <TableHead sx={{backgroundColor: 'rgb(32,36,43)'}}> 
         <TableRow>
           <StyledTableCell>Item Icon</StyledTableCell>
@@ -78,15 +78,6 @@ const Results = () => {
           </TableRow>
         ))}
       </TableBody>
-      {/* <TableBody>
-        {data && test.map((item: any, index: number) => (
-          <TableRow key={item.hash} style={{backgroundColor: index % 2 === 0 ? 'rgb(26,29,34)' : 'rgb(51,56,66)'}}>
-            <img src={`https://www.bungie.net${item.displayProperties.icon}`} alt="" height="50" />
-            <TableCell>{item.displayProperties.name}</TableCell>
-            <TableCell>{item.displayProperties.description}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody> */}
     </Table>
     </ResultContainer>
   );
@@ -139,3 +130,12 @@ export default Results
           <TableCell>any</TableCell>
           <TableCell>none</TableCell>
         </TableRow> */}
+      {/* <TableBody>
+        {data && test.map((item: any, index: number) => (
+          <TableRow key={item.hash} style={{backgroundColor: index % 2 === 0 ? 'rgb(26,29,34)' : 'rgb(51,56,66)'}}>
+            <img src={`https://www.bungie.net${item.displayProperties.icon}`} alt="" height="50" />
+            <TableCell>{item.displayProperties.name}</TableCell>
+            <TableCell>{item.displayProperties.description}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody> */}

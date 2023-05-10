@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { TableCell } from '@mui/material';
+import { TableCell, TableHead, TableRow } from '@mui/material';
 
 export const ResultContainer = styled('div')({
   display: 'flex',
@@ -13,4 +13,5 @@ export const ResultContainer = styled('div')({
 
 export const StyledTableCell = styled(TableCell)({
   color: 'white',
+  borderBottom: "none",
 })
