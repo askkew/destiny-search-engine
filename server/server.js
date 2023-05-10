@@ -14,7 +14,6 @@ const apiKey = process.env.X_API_KEY;
 
 app.get('/search', async (req, res) => {
   const { searchQuery, page } = req.query;
-  // const endpoint = `https://www.bungie.net/Platform/Destiny2/Armory/Search/DestinyInventoryItemDefinition/${searchQuery}/?page=${page}`;
   try {
     const response = await axios.get(`https://www.bungie.net/Platform/Destiny2/Armory/Search/DestinyInventoryItemDefinition/${searchQuery}/?page=${page}`, {
       headers: {
@@ -43,6 +42,44 @@ app.get('/search', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+// app.get('/search', async (req, res) => {
+//   const { searchQuery } = req.query;
+//   let page = 0;
+//   const results = [];
+
+//   try {
+//     do {
+//       const response = await axios.get(`https://www.bungie.net/Platform/Destiny2/Armory/Search/DestinyInventoryItemDefinition/${searchQuery}/?page=${page}`, {
+//         headers: {
+//           'X-API-Key': apiKey,
+//         }
+//       });
+//       results.push(...response.data.Response.results.results);
+//       page++;
+//     } while (response.data.Response.results.results.length >= 25);
+
+//     const resultWithAdditionalData = await Promise.all(
+//       results.map(async (result) => {
+//         const hash = result.hash;
+//         const additionalDataResponse = await axios.get(
+//           `https://www.bungie.net/Platform/Destiny2/Manifest/DestinyInventoryItemDefinition/${hash}`,
+//           {
+//             headers: {
+//               'X-API-Key': apiKey,
+//             },
+//           }
+//         );
+//         const additionalData = additionalDataResponse.data.Response;
+//         return { ...result, additionalData };
+//       })
+//     );
+//     res.json({ Response: { results: resultWithAdditionalData } });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send('Server Error');
+//   }
+// });
 
 //
 
