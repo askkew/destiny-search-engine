@@ -14,4 +14,10 @@ export const ResultContainer = styled('div')({
 export const StyledTableCell = styled(TableCell)({
   color: 'white',
   borderBottom: "none",
+  fontSize: '1.2rem',
+  fontWeight: '300',
+})
+
+export const ImageTableCell = styled('div')({
+  position: 'relative',
 })

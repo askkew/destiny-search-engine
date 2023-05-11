@@ -1,55 +1,46 @@
 import React, { useContext } from 'react';
-import { ResultContainer, StyledTableCell } from './resultstyles';
+import { ImageTableCell, ResultContainer, StyledTableCell } from './resultstyles';
 import { DataContext } from '../../utils/DataContext';
 import { Table, TableBody, TableCell, TableHead, TableRow, makeStyles } from '@mui/material';
+
+const getDamageType = (raceHash: number): string => {
+  switch (raceHash) {
+    case 1847026933:
+      return 'Solar';
+    case 3373582085:
+      return 'Kinetic';
+    case 3454344768:
+      return 'Void';
+    case 2303181850:
+      return 'Arc';
+    case 151347233:
+      return 'Stasis';
+    case 3949783978:
+      return 'Strand';
+    default:
+      return 'N/A';
+  }
+};
+
+const getClassType = (classType: number): string => {
+  switch (classType) {
+    case 0:
+      return 'N/A';
+    case 1:
+      return 'Hunter';
+    case 2:
+      return 'Titan';
+    case 3:
+      return 'Warlock';
+    default:
+      return 'N/A';
+  }
+};
 
 const Results = () => {
   const { data } = useContext(DataContext);
   const test = data?.Response?.results;
   console.log(test)
-
-  const dummydata = [
-    {
-      hash: 1,
-      name: 'nebula rose',
-      description: 'description',
-      rarity: 'legendary',
-      itemtype: 'shader',
-      class: 'any',
-      damagetype: 'none',
-      icon: 'https://www.bungie.net/common/destiny2_content/icons/ccd037c16dcd61f1bf35f91e739c9c58.jpg',
-    },
-    {
-      hash: 2,
-      name: 'ship',
-      description: 'description',
-      rarity: 'exotic',
-      itemtype: 'ship',
-      class: 'any',
-      damagetype: 'none',
-      icon: 'https://www.bungie.net/common/destiny2_content/icons/38aeb633f1a035a73a1ee04176564342.jpg',
-    },
-    {
-      hash: 3,
-      name: 'nebula rose',
-      description: 'description',
-      rarity: 'legendary',
-      itemtype: 'shader',
-      class: 'any',
-      damagetype: 'none',
-      icon: 'https://www.bungie.net/common/destiny2_content/icons/ccd037c16dcd61f1bf35f91e739c9c58.jpg',
-    },
-    {
-      hash: 4,
-      name: 'ship',
-      description: 'description',
-      rarity: 'exotic',
-      itemtype: 'ship',
-      class: 'any',
-      damagetype: 'none',
-      icon: 'https://www.bungie.net/common/destiny2_content/icons/38aeb633f1a035a73a1ee04176564342.jpg',
-    },
-  ]
 
   return (
     <ResultContainer>
@@ -66,15 +57,36 @@ const Results = () => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {dummydata && dummydata.map((item: any, index: number) => (
+        {data && test.map((item: any, index: number) => (
           <TableRow key={item.hash} style={{backgroundColor: index % 2 === 0 ? 'rgb(51,56,66)' : 'rgb(32,36,43)'}}>
-            <img src={`${item.icon}`} alt="" height="50" />
-            <StyledTableCell>{item.name}</StyledTableCell>
-            <StyledTableCell>{item.description}</StyledTableCell>
-            <StyledTableCell>{item.rarity}</StyledTableCell>
-            <StyledTableCell>{item.itemtype}</StyledTableCell>
-            <StyledTableCell>{item.class}</StyledTableCell>
-            <StyledTableCell>{item.damagetype}</StyledTableCell>
+            <ImageTableCell>
+              <img src={`https://www.bungie.net${item.displayProperties.icon}`} alt="" height="70" />
+              {item.additionalData.iconWatermark && (
+                <img style={{ position: 'absolute', top: 0, left: 0 }} src={`https://www.bungie.net${item.additionalData.iconWatermark}`} alt="" />
+              )}
+            </ImageTableCell>
+            <StyledTableCell>{item.displayProperties.name}</StyledTableCell>
+            <StyledTableCell>{item.additionalData.itemTypeAndTierDisplayName}</StyledTableCell>
+            {item.additionalData.inventory.tierTypeName ? (
+              <StyledTableCell>{item.additionalData.inventory.tierTypeName}</StyledTableCell>
+            ) : (
+              <StyledTableCell>N/A</StyledTableCell>
+            )}
+            {item.additionalData.itemTypeDisplayName ? (
+              <StyledTableCell>{item.additionalData.itemTypeDisplayName}</StyledTableCell>
+            ) : (
+              <StyledTableCell>N/A</StyledTableCell>
+            )}
+            {item.additionalData.classType ? (
+              <StyledTableCell>{getClassType(item.additionalData.classType)}</StyledTableCell>
+            ) : (
+              <StyledTableCell>N/A</StyledTableCell>
+            )}
+            {item.additionalData.damageTypeHashes ? (
+              <StyledTableCell>{getDamageType(item.additionalData.damageTypeHashes[0])}</StyledTableCell>
+            ) : (
+              <StyledTableCell>N/A</StyledTableCell>
+            )}
           </TableRow>
         ))}
       </TableBody>
@@ -84,58 +96,3 @@ const Results = () => {
 }
 
 export default Results
-
-
-{/* <TableRow>
-          <img src={dummyimage} alt="" height="50" />
-          <TableCell>nebula rose</TableCell>
-          <TableCell>description</TableCell>
-          <TableCell>rare</TableCell>
-          <TableCell>shader</TableCell>
-          <TableCell>any</TableCell>
-          <TableCell>none</TableCell>
-        </TableRow>
-        <TableRow>
-          <img src={secondimage} alt="" height="50" />
-          <TableCell>nebula rose</TableCell>
-          <TableCell>description</TableCell>
-          <TableCell>rare</TableCell>
-          <TableCell>shader</TableCell>
-          <TableCell>any</TableCell>
-          <TableCell>none</TableCell>
-        </TableRow>
-        <TableRow>
-          <img src={dummyimage} alt="" height="50" />
-          <TableCell>nebula rose</TableCell>
-          <TableCell>description</TableCell>
-          <TableCell>rare</TableCell>
-          <TableCell>shader</TableCell>
-          <TableCell>any</TableCell>
-          <TableCell>none</TableCell>
-        </TableRow>
-        <TableRow>
-          <img src={dummyimage} alt="" height="50" />
-          <TableCell>nebula rose</TableCell>
-          <TableCell>description</TableCell>
-          <TableCell>rare</TableCell>
-          <TableCell>shader</TableCell>
-          <TableCell>any</TableCell>
-          <TableCell>none</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>nebula rose</TableCell>
-          <TableCell>description</TableCell>
-          <TableCell>rare</TableCell>
-          <TableCell>shader</TableCell>
-          <TableCell>any</TableCell>
-          <TableCell>none</TableCell>
-        </TableRow> */}
-      {/* <TableBody>
-        {data && test.map((item: any, index: number) => (
-          <TableRow key={item.hash} style={{backgroundColor: index % 2 === 0 ? 'rgb(26,29,34)' : 'rgb(51,56,66)'}}>
-            <img src={`https://www.bungie.net${item.displayProperties.icon}`} alt="" height="50" />
-            <TableCell>{item.displayProperties.name}</TableCell>
-            <TableCell>{item.displayProperties.description}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody> */}
