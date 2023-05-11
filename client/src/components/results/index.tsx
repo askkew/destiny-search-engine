@@ -23,24 +23,28 @@ const getDamageType = (raceHash: number): string => {
 };
 
 const getClassType = (classType: number): string => {
+  let classTypeAlt = 'All class';
   switch (classType) {
     case 0:
-      return 'N/A';
+      classTypeAlt = 'Titan';
+      break;
     case 1:
-      return 'Hunter';
+      classTypeAlt = 'Hunter';
+      break;
     case 2:
-      return 'Titan';
+      classTypeAlt = 'Warlock';
+      break;
     case 3:
-      return 'Warlock';
-    default:
-      return 'N/A';
+      classTypeAlt = 'All class';
+      break;
   }
+  return classTypeAlt;
 };
 
 const Results = () => {
   const { data } = useContext(DataContext);
   const test = data?.Response?.results;
-  console.log(test)
+  console.log(test);
 
   return (
     <ResultContainer>
@@ -57,7 +61,9 @@ const Results = () => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {data && test.map((item: any, index: number) => (
+        {data && test.map((item: any, index: number) => {
+          const classType = item.additionalData.classType;
+          return (
           <TableRow key={item.hash} style={{backgroundColor: index % 2 === 0 ? 'rgb(51,56,66)' : 'rgb(32,36,43)'}}>
             <ImageTableCell>
               <img src={`https://www.bungie.net${item.displayProperties.icon}`} alt="" height="70" />
@@ -77,18 +83,14 @@ const Results = () => {
             ) : (
               <StyledTableCell>N/A</StyledTableCell>
             )}
-            {item.additionalData.classType ? (
-              <StyledTableCell>{getClassType(item.additionalData.classType)}</StyledTableCell>
-            ) : (
-              <StyledTableCell>N/A</StyledTableCell>
-            )}
+            <StyledTableCell>{getClassType(classType)}</StyledTableCell>
             {item.additionalData.damageTypeHashes ? (
               <StyledTableCell>{getDamageType(item.additionalData.damageTypeHashes[0])}</StyledTableCell>
             ) : (
               <StyledTableCell>N/A</StyledTableCell>
             )}
           </TableRow>
-        ))}
+      )})}
       </TableBody>
     </Table>
     </ResultContainer>
