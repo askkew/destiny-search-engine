@@ -25,7 +25,7 @@ const Searchbar = () => {
   const handleSearch = async (event: { preventDefault: () => void; }) => {
     setLoading(true);
     event.preventDefault();
-    const endpoint = `http://localhost:5000/search?searchQuery=${searchQuery}&page=${page}`;
+    const endpoint = `http://localhost:5000/search?searchQuery=${searchQuery}`;
     const response = await axios.get(endpoint);
     setData(response.data);
     // console.log(response)
@@ -53,7 +53,7 @@ const Searchbar = () => {
     <SearchBarContainer>
       <StyledForm onSubmit={handleSearch}>
         <StyledInputField type="text" placeholder="Enter search query" id="searchQuery" required onChange={(e) => setSearchQuery(e.target.value)} />
-        <StyledInputFieldTemp type="number" placeholder="Enter page" id="page" required onChange={(e) => setPage(Number(e.target.value))} />
+        {/* <StyledInputFieldTemp type="number" placeholder="Enter page" id="page" required onChange={(e) => setPage(Number(e.target.value))} /> */}
         <StyledButton type="submit"><ButtonLabel>Search</ButtonLabel></StyledButton>
       </StyledForm>
       <BarLoader
