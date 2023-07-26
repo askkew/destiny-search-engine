@@ -69,8 +69,8 @@ export const StyledForm = styled('form')({
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
-  '@media (max-width: 560px)': {
-    flexDirection: "column",
+  '@media (max-width: 370px)': {
+    // flexDirection: "column",
   },
 })
 

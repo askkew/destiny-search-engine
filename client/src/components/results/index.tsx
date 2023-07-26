@@ -48,16 +48,16 @@ const Results = () => {
 
   return (
     <ResultContainer>
-      <Table sx={{borderRadius: '10px 0 0 10px',}}>
+      <Table sx={{borderRadius: '10px 0 0 10px'}}>
       <TableHead sx={{backgroundColor: 'rgb(32,36,43)'}}> 
         <TableRow>
           <StyledTableCell>Item Icon</StyledTableCell>
           <StyledTableCell>Name</StyledTableCell>
-          <StyledTableCell>Description</StyledTableCell>
+          {/* <StyledTableCell>Description</StyledTableCell>
           <StyledTableCell>Rarity</StyledTableCell>
-          <StyledTableCell>Item Type</StyledTableCell>
+          <StyledTableCell>Item Type</StyledTableCell> */}
           <StyledTableCell>Class</StyledTableCell>
-          <StyledTableCell>Damage Type</StyledTableCell>
+          {/* <StyledTableCell>Damage Type</StyledTableCell> */}
         </TableRow>
       </TableHead>
       <TableBody>
@@ -72,7 +72,7 @@ const Results = () => {
               )}
             </ImageTableCell>
             <StyledTableCell>{item.displayProperties.name}</StyledTableCell>
-            <StyledTableCell>{item.additionalData.itemTypeAndTierDisplayName}</StyledTableCell>
+            {/* <StyledTableCell>{item.additionalData.itemTypeAndTierDisplayName}</StyledTableCell>
             {item.additionalData.inventory.tierTypeName ? (
               <StyledTableCell>{item.additionalData.inventory.tierTypeName}</StyledTableCell>
             ) : (
@@ -82,13 +82,13 @@ const Results = () => {
               <StyledTableCell>{item.additionalData.itemTypeDisplayName}</StyledTableCell>
             ) : (
               <StyledTableCell>N/A</StyledTableCell>
-            )}
+            )} */}
             <StyledTableCell>{getClassType(classType)}</StyledTableCell>
-            {item.additionalData.damageTypeHashes ? (
+            {/* {item.additionalData.damageTypeHashes ? (
               <StyledTableCell>{getDamageType(item.additionalData.damageTypeHashes[0])}</StyledTableCell>
             ) : (
               <StyledTableCell>N/A</StyledTableCell>
-            )}
+            )} */}
           </TableRow>
       )})}
       </TableBody>

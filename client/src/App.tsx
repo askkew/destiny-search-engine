@@ -26,11 +26,11 @@ function App() {
       <ToastContainer />
       <Searchbar />
       <Contentcontainer>
-        <Actions />
-        <StyledDivider orientation="vertical" flexItem />
+        {/* <Actions />
+        <StyledDivider orientation="vertical" flexItem /> */}
         <Results />
-        <StyledDivider orientation="vertical" flexItem />
-        <Filters />
+        {/* <StyledDivider orientation="vertical" flexItem />
+        <Filters /> */}
       </Contentcontainer>
     </DataContext.Provider>
   );

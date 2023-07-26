@@ -25,21 +25,55 @@ const Searchbar = () => {
   const handleSearch = async (event: { preventDefault: () => void; }) => {
     setLoading(true);
     event.preventDefault();
-    const endpoint = `http://localhost:5000/search?searchQuery=${searchQuery}`;
-    const response = await axios.get(endpoint);
-    setData(response.data);
-    // console.log(response)
-    setLoading(false);
-    toast('🦄 Wow so easy!', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
+    
+    if (!searchQuery) {
+      setLoading(false);
+      toast.error('Please fill out the search field.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
       });
+      return;
+    }
+    
+    try {
+      // const endpoint = `http://localhost:5000/search?searchQuery=${searchQuery}`;
+      const endpoint = `https://ec2-3-17-167-220.us-east-2.compute.amazonaws.com/search?searchQuery=${searchQuery}`;
+      const response = await axios.get(endpoint);
+      setData(response.data);
+      setLoading(false);
+  
+      if (response.data.length === 0) {
+        toast.error('Couldn\'t find any items.', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setLoading(false);
+      toast.error('Error fetching data. Please try again later.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   useEffect(() => {
