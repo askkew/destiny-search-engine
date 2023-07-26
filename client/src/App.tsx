@@ -11,6 +11,7 @@ import { Divider } from '@mui/material';
 const Contentcontainer = styled('div')({
   display: 'flex',
   flexDirection: 'row',
+  backgroundColor: 'rgb(26,29,34)',
 })
 
 const StyledDivider = styled(Divider)({

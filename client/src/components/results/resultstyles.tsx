@@ -9,6 +9,7 @@ export const ResultContainer = styled('div')({
   height: '100vh',
   minWidth: '100%',
   marginTop: '10px',
+  backgroundColor: 'rgb(40,44,52)',
 })
 
 export const StyledTableCell = styled(TableCell)({
